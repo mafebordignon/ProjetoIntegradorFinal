@@ -23,7 +23,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>, PagingA
 //
     @Transactional
     @Modifying
-    @Query(value = "UPDATE Usuario u SET u.senha = :newSenha WHERE u.id = :usuarioId", nativeQuery = true)
+    @Query(value = "UPDATE usuario u SET u.senha = :newSenha WHERE u.id = :usuarioId", nativeQuery = true)
     void updateSenha(@Param("usuarioId") Long usuarioId, @Param("newSenha") String newSenha);
 //
 //    @Modifying
