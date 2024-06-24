@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Senha</title>
+    <style>
+        /* Estilos CSS fornecidos */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100%;
+            background-color: var(--light-gray);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        :root {
+            --dark-blue: #243646;
+            --white: #ffffff;
+            --red-ribbon: #EA0044;
+            --light-gray: #edf0f2;
+        }
+
+        .poppins-regular {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10%;
+        }
+
+        .main-container a {
+            font-size: 15pt;
+        }
+
+        img {
+            width: 25%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .main-content {
+            width: 25%;
+        }
+
+        #dark-blue-block {
+            width: 100%;
+            height: 3vh;
+            background-color: var(--dark-blue);
+            padding-left: 15px;
+        }
+
+        .fields {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-form label {
+            margin-bottom: 5px;
+            font-size: 16pt;
+        }
+
+        .form-field {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .form-field input {
+            width: calc(100% - 20px); /* Adicionando margem interna para o campo de entrada */
+            height: 5vh;
+            border-radius: 5px;
+            padding-left: 10px;
+            font-size: 14pt;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .form-field input:focus {
+            border-color: var(--red-ribbon); /* Alterando a cor da borda ao focar */
+        }
+
+        #submit-button {
+            height: 6vh;
+            width: calc(100% + 6px); /* Ajustando a largura para compensar a borda */
+            margin-top: 3%;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border: 1px solid var(--red-ribbon);
+            background-color: var(--red-ribbon);
+            color: var(--white);
+            font-size: 16pt;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        #submit-button:hover {
+            background-color: var(--white); /* Alterando a cor de fundo ao passar o mouse */
+            color: var(--red-ribbon); /* Alterando a cor do texto ao passar o mouse */
+        }
+
+        #warn {
+            margin-top: 10px;
+            font-size: 16pt;
+            color: var(--red-ribbon);
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="main-content">
+        <form id="formSenha" class="login-form">
+            <div id="dark-blue-block"></div>
+            <div class="fields">
+                <label for="senha" class="poppins-regular">Nova Senha:</label>
+                <div class="form-field">
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <label for="confirmar" class="poppins-regular">Confirme Senha:</label>
+                <div class="form-field">
+                    <input type="password" id="confirmar" name="confirmar" required>
+                </div>
+                <button type="submit" id="submit-button" class="poppins-regular">Atualizar Senha</button>
+                <p id="warn" class="poppins-regular">A senha deve corresponder aos seguintes requisitos:
+                    <br>- Deve conter pelo menos 8 caracteres.
+                    <br>- Deve conter pelo menos 1 número.
+                    <br>- Deve conter pelo menos 1 símbolo especial.
+                    <br>A senha não pode conter espaços.</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var senha = document.getElementById("senha");
+    const confirmarSenha = document.getElementById("confirmar");
+
+    document.getElementById("formSenha").addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita que o formulário seja submetido normalmente
+        if (senha.value !== '' || confirmarSenha.value !== '') {
+            var alertFormatoSenha = "A senha deve corresponder aos seguintes requisitos:\n - Deve conter pelo menos 8 caracteres.\n - Deve conter pelo menos 1 número.\n - Deve conter pelo menos 1 símbolo especial.";
+            var regexNumero = /[0-9]/;
+            var regexSimbolo = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+            if (!regexSimbolo.test(senha.value) || !regexNumero.test(senha.value) || senha.value.length < 8) {
+                alert(alertFormatoSenha);
+                return false;
+            }
+            if (senha.value.indexOf(' ') !== -1) {
+                alert("A senha não pode conter espaços.");
+                return false;
+            }
+            if (senha.value !== confirmarSenha.value) {
+                alert("Campo de senha e confirmação de senha devem ser o mesmo!");
+                return;
+            }
+        }
+        atualizar();
+    });
+
+    function atualizar() {
+        senha = document.getElementById("senha").value;
+
+        // Cria um objeto JSON com a senha
+        var senhaDTO = {
+            senha: senha
+        };
+
+        fetch("/api/senha", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(senhaDTO)
+        })
+        .then(response => {
+            alert("Senha alterada com sucesso");
+            window.location.href = "/login";
+            console.log(response);
+            if (response.ok) {
+                return response.text(); // Retorna o texto da resposta se estiver tudo OK
+            }
+            throw new Error("Erro ao atualizar a senha"); // Lança um erro caso ocorra um problema
+        })
+        .catch(error => {
+            // Exibe uma mensagem de erro para o usuário
+            alert(error.message);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolução</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/devolucao.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="flex-container">
+        <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+        </div>
+        <p id="nomeUsuario"></p>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <nav id="side-nav" class="flex-container">
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <a href="/campos-ativos" class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </a>
+        <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+            <img src="/images/usuarios-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Usuários</p>
+        </a>
+        <div class="nav-marker flex-container">
+            <div class="flex-container main-screen-button">
+                <img src="/images/acao-button.svg" alt="" >
+                <p class="nav-button-text poppins-regular">Devolução</p>
+            </div>
+        </div>
+    </nav>
+    <div id="alert-sucesso" class="hidden">
+        <div class="alert-content">
+            <p>Item devolvido com sucesso!</p>
+        </div>
+    </div>
+    <div id="alert-erro" class="hidden">
+        <div class="alert-content">
+            <p>Erro ao executar a ação. Tente novamente</p>
+        </div>
+    </div>
+    <main>
+        <div>
+            <fieldset>
+                <h1>Devolução</h1>
+                <hr>
+                <button id="salvar" type="submit" value="Salvar" onclick="buttonSalvar" class="poppins-regular">Salvar</button>
+
+                <form>
+                    <div class="horizontal">
+                        <div>
+                            <label for="item">Item</label><br>
+                            <input disabled type="text" id="item" name="item" placeholder="Item">
+                        </div>
+                        <div>
+                            <label for="disponibilidade">Disponibilidade</label><br>
+                            <input disabled type="text" id="disponibilidade" name="disponibilidade" placeholder="Disponibilidade">
+                        </div>
+                        <div>
+                            <label for="categoria">Categoria</label>
+                            <input disabled type="text" id="categoria" name="categoria" placeholder="Categoria">
+                        </div>
+                    </div>
+                    <div class="horizontal">
+                        <div>
+                            <label for="origem">Origem</label><br>
+                            <input disabled type="text" id="origem" name="origem" placeholder="Origem">
+                        </div>
+                        <div>
+                            <label for="local" class="required">Local Atual</label><br>
+                            <select id="local" name="local">
+                            </select>
+                        </div>
+                        <div>
+                            <label for="responsavel" class="required">Responsável</label><br>
+                            <input required title="este campo é obrigatório" type="text" name="responsavel" id="responsavel" placeholder="Responsável pela devolução do item" maxlength="255">
+                            <span id="erro-responsavel" style="display: none; color: red;"></span>
+                        </div>
+                    </div>
+                    <div class="horizontal">
+                        <!-- <div>
+                            <label for="anexos">Anexos</label><br>
+                            <input type="text" id="anexos" name="anexos" placeholder="Arquivos anexados" maxlength="255"> -->
+                        <!-- <div class="file-upload-container">
+                            <label class="file-upload-button" for="anexos">Procurar</label>
+                            <input type="file" id="anexos" name="anexos" class="file-upload-input" multiple>
+                            <span id="file-upload-label" class="file-upload-label">Nenhum arquivo selecionado</span>
+                        </div> -->
+                        <!-- </div> -->
+                        <div>
+                            <label for="descricao">Descrição do Item</label>
+                            <input type="text" id="descricao" name="descricao" placeholder="Informação adicional sobre o item" maxlength="255">
+                        </div>
+                    </div>
+                    <p class="legenda">* Campos obrigatórios</p>
+                </form>
+            </fieldset>
+        </div>
+    </main>
+</div>
+<script src="/js/layout.js"></script>
+<script src="/js/devolucao.js"></script>
+</body>
+</html>

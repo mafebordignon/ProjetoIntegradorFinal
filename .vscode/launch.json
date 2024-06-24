@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-KeepInventoryApplication<keepInventory>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.grupo6.keepInventory.KeepInventoryApplication",
+            "projectName": "keepInventory",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

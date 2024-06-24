@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Item</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="flex-container">
+    <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+    </div>
+    <p id="nomeUsuario"></p>
+    <a href="/logout">Sair</a>
+</header>
+
+<nav id="side-nav" class="flex-container">
+    <a href="/inventario" class="flex-container main-screen-button">
+        <img src="/images/inventario-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Inventário</p>
+    </a>
+    <div class="nav-marker flex-container">
+
+        <div href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </div>
+    </div>
+    <a href="/campos-ativos" class="flex-container main-screen-button">
+        <img src="/images/campos-ativos-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Campos Ativos</p>
+    </a>
+    <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+        <img src="/images/usuarios-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Usuários</p>
+    </a>
+</nav>
+<main>
+    <fieldset>
+        <h1>Cadastro de Item</h1>
+        <hr>
+        <form>
+            <button id="salvar" type="submit" value="Salvar"  class="poppins-regular">Salvar</button>
+            <div class="horizontal">
+                <div>
+                    <label for="item">Item</label><br>
+                    <input type="text" id="item" name="item" placeholder="Item" required>
+                </div>
+                <div>
+                    <label for="marca">Marca</label><br>
+                    <select id="marca" name="marca">
+                    </select>
+                </div>
+                <div>
+                    <label for="modelo">Modelo</label><br>
+                    <select id="modelo" name="modelo">
+                    </select>
+                </div>
+            </div>
+            <div class="horizontal">
+                <div>
+                    <label for="potencia">Potência</label><br>
+                    <input type="text" id="potencia" name="potencia" placeholder="Potência" required>
+                </div>
+                <div>
+                    <label for="numSerie">Número da Série</label>
+                    <input type="text" id="numSerie" name="numSerie" placeholder="Número da Série" required>
+                </div>
+                <div>
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria">
+                    </select>
+                </div>
+            </div>
+            <div class="horizontal">
+                <div>
+                    <label for="origem">Origem</label><br>
+                    <select id="origem" name="local" >
+                    </select>
+                </div>
+                <div>
+                    <label for="local">Local Atual</label><br>
+                    <select id="local" name="local">
+                    </select>
+                </div>
+            </div>
+            <div class="horizontal">
+                <div>
+                    <label for="nf">Nota Fiscal</label><br>
+                    <input type="text" id="nf" name="nf" placeholder="Nota Fiscal" required>
+                </div>
+                <div>
+                    <label for="dnf">Data da Nota Fiscal</label><br>
+                    <input type="date" id="dnf" name="dnf" placeholder="Data da Nota Fiscal" required>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</main>
+</div>
+<script src="/js/layout.js"></script>
+<script src="/js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimo</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/emprestimo.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="flex-container">
+        <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+        </div>
+        <p id="nomeUsuario"></p>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <nav id="side-nav" class="flex-container">
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <a href="/campos-ativos" class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </a>
+        <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+            <img src="/images/usuarios-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Usuários</p>
+        </a>
+        <div class="nav-marker flex-container">
+            <div class="flex-container main-screen-button">
+                <img src="/images/acao-button.svg" alt="" >
+                <p class="nav-button-text poppins-regular">Empréstimo</p>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="body">
+            <div>
+                <fieldset>
+                    <h1 class="poppins-regular">Emprestimo</h1>
+                    <button class="poppins-regular" id="salvar" type="submit" value="Salvar" onclick="buttonSalvar">Salvar</button>
+                    <hr>
+                    <form class="poppins-regular">
+                        <section>
+                            <div>
+                                <label for="item">Item</label><br>
+                                <input disabled type="text" name="item" id="item">
+                            </div>
+
+                            <div>
+                                <label for="disponibilidade">Disponibilidade</label><br>
+                                <input disabled name="disponibilidade" id="disponibilidade">
+                            </div>
+
+                            <div>
+                                <label for="categoria">Categoria</label><br>
+                                <input disabled name="categoria" id="categoria">
+                            </div>
+                        </section>
+
+                        <section>
+                            <div>
+                                <label for="origem">Origem</label><br>
+                                <input disabled type="text" name="origem" id="origem">
+                            </div>
+
+                            <div>
+                                <label for="loc_atual">Destino</label><br>
+                                <select name="loc_atual" id="loc_atual"></select>
+                            </div>
+
+                            <div>
+                                <label for="responsavel">Responsável</label><br>
+                                <input required type="text" name="responsavel" id="responsavel" maxlength="255" placeholder="digite o nome do responsável pelo item...">
+                                <span id="erro-responsavel" style="display: none; color: red;"></span>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div>
+                                <label for="descricao">Descrição da Ação</label>
+                                <input type="text" id="descricao" maxlength="255" placeholder="digite a descrição do item...">
+                            </div>
+                        </section>
+
+                    </form>
+                </fieldset>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/js/layout.js"></script>
+<script src="/js/emprestimo.js"></script>
+</body>
+
+</html>

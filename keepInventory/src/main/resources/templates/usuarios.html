@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuários</title>
+    <link rel="icon" href="/images/icons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/layout2.css">
+    <link rel="stylesheet" href="/css/usuarios.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>    <header class="flex-container">
+    <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+    </div>
+    <p id="nomeUsuario"></p>
+    <a href="/logout">Sair</a>
+</header>
+
+    <nav id="side-nav" class="flex-container">
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <a href="/campos-ativos" class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </a>
+        <div class="nav-marker flex-container">
+            <div class="flex-container main-screen-button" id="nav-admin">
+                <img src="/images/usuarios-button.svg" alt="" >
+                <p class="nav-button-text poppins-regular">Usuários</p>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content">
+            <h1>Usuários</h1>
+            <hr>
+            <div>
+                <form id="logon-form">
+                    <div id="h2-input">
+                        <h2>Cadastrar Usuário</h2>
+                        <input type="submit" value="Cadastrar" class="button">
+                    </div>
+
+                    <div class="column-form" >
+                        <label for="nome-input">Nome</label>
+                        <input id="nome-input" required>
+                        <label for="sobrenome-input">Sobrenome</label>
+                        <input id="sobrenome-input" required>
+
+                    </div>
+                    <div class="column-form">
+                        <label for="email-input">Email</label>
+                        <input id="email-input" type="email" required>
+                        <label for="cargo-input">Cargo</label>
+                        <select id="cargo-input">
+                            <option value="ALUNO">Aluno</option>
+                            <option value="PROFESSOR">Professor</option>
+                            <option value="ADMIN">Admin</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <table>
+                <caption>Lista de Usuários</caption>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                        <th>Cargo</th>
+                        <th>Ativo</th>
+                        <th>Alterar</th>
+                    </tr>
+                </thead>
+                <tbody id="usuario-table-body"></tbody>
+            </table>
+            <p id="pVazio" style="display: none;">Nenhum usuário encontrado.</p>
+            <div style="display: flex; flex-direction: row; align-items: center; align-self: center;">
+                <button id="botao-anterior" onclick="paginaAnterior()">
+                    Anterior
+                </button>
+                <input id="curPage" type="number" value="1" disabled style="height: 35px;">
+                <button id="botao-proximo" onclick="paginaProxima()">
+                    Proxíma
+                </button>
+            </div>
+
+            <div id="form-alterar-usuario" style="display: none;">
+                <h1></h1>
+                <div>
+                    <label>Nome</label>
+                    <input id="a-nome">
+                    <label>Sobrenome</label>
+                    <input id="a-sobrenome">
+                    <label>Email</label>
+                    <input id="a-email">
+                    <label>Cargo</label>
+                    <select id="a-cargo" class="">
+                        <option value="ADMIN">Admin</option>
+                        <option value="ALUNO">Aluno</option>
+                        <option value="PROFESSOR">Professor</option>
+                    </select>
+                    <button id="Bsalvar">salvar</button>
+                    <button id="cancelar" onclick="cancelar()">cancelar</button>
+                </div>
+            </div>
+            <div id="resetModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Deseja resetar a senha deste usuário?</h2>
+                    <button id="confirmButton" class="button">Sim</button>
+                    <button id="cancelButton" class="button">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/usuarios.js"></script>
+    <script src="/js/layout.js"></script>
+</body>
+</html>

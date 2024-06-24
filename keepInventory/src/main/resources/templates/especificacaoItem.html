@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificação do Item</title>
+    <link rel="icon" href="/images/icons/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/especificacao-item.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="flex-container">
+    <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+        <div class="header-nav-button-stripes"></div>
+    </div>
+    <p id="nomeUsuario"></p>
+    <a href="/logout">Sair</a>
+</header>
+
+<nav id="side-nav" class="flex-container">
+
+    <a href="/inventario" class="flex-container main-screen-button">
+        <img src="/images/inventario-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Inventário</p>
+    </a>
+
+
+    <a href="/cadastro-item" class="flex-container main-screen-button">
+        <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+        <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+    </a>
+    <a href="/campos-ativos" class="flex-container main-screen-button">
+        <img src="/images/campos-ativos-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Campos Ativos</p>
+    </a>
+    <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+        <img src="/images/usuarios-button.svg" alt="" >
+        <p class="nav-button-text poppins-regular">Usuários</p>
+    </a>
+    <div class="nav-marker flex-container">
+        <div  class="flex-container main-screen-button" >
+            <img src="/images/especificacao-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Especificação</p>
+        </div>
+    </div>
+
+</nav>
+
+        <main>
+            <div class="background-main">
+                <div class="background-itens">
+                    <div class="header-item">
+                        <p class="name-item">
+                            #Item
+                        </p>
+                        <div class="container-header-item">
+                            <button onclick="UpdateItem()" class="update-item">+ Atualizar Item</button>
+                            <button onclick="saveChanges()" class="update-item" id="saveBtn" style="display:none">Salvar</button>
+                            <button onclick="acao()" class="devolution-item" id="acao-button">+ Devolução</button>
+                            <button onclick="" class="excel" id="excel">+ Gerar XLXS</button>
+                            <button onclick="showPopup()" class="gerar-manutencao" id="manutencao-button">+ Manutenção</button>
+                            <div  class="popup" id="popup">
+                                <div class="content-pop">
+                                    <span onclick="hidePopup()">&times;</span>
+                                    <h3 style=" padding-left: 25%;">Solicitar Manutenção?</h3>
+                                    <label style="padding-right: 30px; padding-left: 30%;">
+                                        <input type="radio" name="manutencao" value="Sim" id="radio-sim" style="margin-right: 4px;">Sim
+                                    </label>
+                                    <label style="padding-right: 30px;">
+                                        <input type="radio" name="manutencao" value="Nao" id="radio-nao" style="margin-right: 4px;">Não
+                                    </label>
+                                    <div style="padding: 10px 0px 20px;padding-left: 6%;">
+                                        <label for="motivo">Motivo:</label>
+                                        <input type="text" id="motivo" required style="border-radius: 5px; width: 70%;">
+                                    </div>
+                                    <div class="button-container">
+                                        <button onclick="saveManutencao()" style="background-color: #4CAF50; color: white">Salvar</button>
+                                        <button onclick="closePopup" style="background-color: red;">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <hr class="break-line">
+                    <div class="container-content-item">
+                        <div class="container-content-item-1column">
+                            <!-- <div class="container-content-item-id">
+                                <p class="content-item-id">
+                                    id
+                                </p>
+                                <p id="edit-texto-id" class="content-item-id-box">
+                                   202364537 
+                                </p>
+                                <input type="text" id="edit-id" class="content-item-id-box" style="display: none;">
+                            </div> -->
+                            <div class="container-content-item-item">
+                                <p class="content-item-item">
+                                    Item
+                                </p>
+                                <p id="edit-texto-item" class="content-item-item-box">
+                                    Pipeta
+                                </p>
+                                <input type="text" id="edit-item" class="content-item-item-box" style="display: none;">
+                            </div>
+                            <div class="container-content-item-potencia">
+                                <p class="content-item-potencia">
+                                    Potência
+                                </p>
+                                <p id="edit-texto-potencia" class="content-item-potencia-box">
+                                    N/A
+                                </p>
+                                <input type="text" id="edit-potencia" class="content-item-potencia-box" style="display: none;">
+                            </div>
+                            <div class="container-content-item-origem">
+                                <p class="content-item-origem">
+                                    Origem
+                                </p>
+                                <p id="edit-texto" class="content-item-origem-box">
+                                    Laboratório de Biologia
+                                </p>
+                                <select id="edit-origem" class="content-item-origem-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-dataEntrada">
+                                <p class="content-item-dataEntrada">
+                                    Data de Entrada
+                                </p>
+                                <p id="edit-texto-data" class="content-item-dataEntrada-box">
+                                    02/03/2022
+                                </p>
+                                <input type="date" id="edit-data" class="content-item-dataEntrada-box" style="display: none;" required>
+                            </div>
+                        </div>
+                       
+                        <div class="container-content-item-2column">
+                            <div class="container-content-item-marca">
+                                <p class="content-item-marca">
+                                    Marca
+                                </p>
+                                <p id="edit-texto-marca" class="content-item-marca-box">
+                                    Therma
+                                </p>
+                                <select id="edit-marca" class="content-item-marca-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-categoria">
+                                <p class="content-item-categoria">
+                                    Categoria
+                                </p>
+                                <p id="edit-texto-utensilio" class="content-item-categoria-box">
+                                    Utensílio
+                                </p>
+                                <select id="edit-utensilio" class="content-item-categoria-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-localAtual">
+                                <p class="content-item-localAtual">
+                                    Local Atual
+                                </p>
+                                <p id="edit-texto-local-atual" class="content-item-localAtual-box">
+                                    Laboratório 01
+                                </p>
+                                <input type="text" id="edit-local-atual" class="content-item-localAtual-box" style="display: none;" disabled>
+                            </div>
+                            <div class="container-content-item-nf">
+                                <p class="content-item-nf">
+                                    Nota Fiscal
+                                </p>
+                                <p id="edit-texto-nf" class="content-item-nf-box">
+                                    551000007
+                                </p>
+                                <input type="text" id="edit-nf" class="content-item-nf-box" style="display: none;">
+                            </div>
+
+
+                        </div>
+
+                        <div  class="container-content-item-3column">
+                            <div class="container-content-item-modelo">
+                                <p class="content-item-modelo">
+                                    Modelo
+                                </p>
+                                <p id="edit-texto-modelo" class="content-item-modelo-box">
+                                    Thema pro
+                                </p>
+                                <select id="edit-modelo" class="content-item-modelo-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-disponivel">
+                                <p class="content-item-disponivel">
+                                    Disponibilidade
+                                </p>
+                                <p id="edit-texto-disponivel" class="content-item-disponivel-box">
+                                    
+                                </p>
+                                <select id="edit-disponivel" class="content-item-disponivel-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-status">
+                                <p class="content-item-status">
+                                    Status
+                                </p>
+                                <p id="edit-texto-status" class="content-item-status-box">
+                                    ativo
+                                </p>
+                                <select id="edit-status" class="content-item-status-box" style="display: none;"></select>
+                            </div>
+                            <div class="container-content-item-dataNf">
+                                <p class="content-item-dataNf">
+                                    Data de Nota Fiscal
+                                </p>
+                                <p id="edit-texto-data-nf" class="content-item-dataNf-box" type="datetime-local">
+                                    05/05/2022
+                                </p>
+                                <input type="date" id="edit-data-nf" class="content-item-dataNf-box" style="display: none;" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-4coluna">
+                        <div class="container-content-item-comentario">
+                            <p class="content-item-comentario">
+                                Comentário sobre a última manutenção
+                            </p>
+                            <p id="edit-texto-comentario" class="content-item-manutencao-box">
+                                03/06/2024
+                            </p>
+                            <input type="text" id="edit-comentario" class="content-item-manutencao-box" style="display: none;">
+                        </div>
+                    </div>
+                    <hr class="break-line">
+                    <div class="container-header-historico">
+                        <div class="historico-item" onclick="showSection('historico')">
+                            Histórico
+                        </div>
+                        <!-- <div class="anexos-item" onclick="showSection('anexos')">
+                            Anexos
+                        </div> -->
+                        <div class="manutencao-historico" onclick="showSection('manutencao')">
+                            Manutenção
+                        </div>
+                    </div>
+                    <div id="historicoSection" class="container-historico" style="display: none;">
+                        
+                    </div>
+                    <div id="anexosSection" class="container-historico" style="display: none;">
+                        <ul id="fileList"></ul>
+                    </div>
+                    <div id="manutencaoSection" class="container-historico" style="display: none;" onclick=""> 
+                        <a> </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/js/layout.js"></script>
+    <script src="/js/especificacao-item.js"></script>
+</body>
+
+</html>
