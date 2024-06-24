@@ -196,7 +196,7 @@ table tr:nth-child(even) {
 }
 
 #form-alterar-usuario button:hover {
-    background-color: darken(var(--green), 10%);
+    background-color: #458447;
 }
 
 
