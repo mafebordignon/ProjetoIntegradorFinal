@@ -69,8 +69,6 @@ public class DataInitializer implements CommandLineRunner {
             disponibilidadeRepository.save(new Disponibilidade("Necessita de manutenção"));
             disponibilidadeRepository.save(new Disponibilidade("Em manutencao"));
             disponibilidadeRepository.save(new Disponibilidade("Irrecuperável"));
-
         }
-
     }
 }
