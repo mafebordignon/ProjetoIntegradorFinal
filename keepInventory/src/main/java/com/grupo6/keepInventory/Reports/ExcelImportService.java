@@ -54,80 +54,122 @@ public class ExcelImportService {
                 }
 
                 Item item = new Item();
-                item.setDescricao(row.getCell(0).getStringCellValue());
-                item.setNumeroNotaFiscal(row.getCell(1).getStringCellValue());
+
+                // Descricao
+                Cell descricaoCell = row.getCell(0);
+                if (descricaoCell != null && descricaoCell.getCellType() == CellType.STRING) {
+                    item.setDescricao(descricaoCell.getStringCellValue());
+                }
+
+                // Numero Nota Fiscal
+                Cell numeroNotaFiscalCell = row.getCell(1);
+                if (numeroNotaFiscalCell != null && numeroNotaFiscalCell.getCellType() == CellType.STRING) {
+                    item.setNumeroNotaFiscal(numeroNotaFiscalCell.getStringCellValue());
+                }
 
                 // Marca
-                String marcaNome = row.getCell(2).getStringCellValue();
-                Marca marca = marcaRepository.findByNome(marcaNome).orElseGet(() -> {
-                    Marca newMarca = new Marca();
-                    newMarca.setNome(marcaNome);
-                    return marcaRepository.save(newMarca);
-                });
+                Cell marcaCell = row.getCell(2);
+                if (marcaCell != null && marcaCell.getCellType() == CellType.STRING) {
+                    String marcaNome = marcaCell.getStringCellValue();
+                    Marca marca = marcaRepository.findByNome(marcaNome).orElseGet(() -> {
+                        Marca newMarca = new Marca();
+                        newMarca.setNome(marcaNome);
+                        return marcaRepository.save(newMarca);
+                    });
 
-                // Modelo
-                String modeloNome = row.getCell(3).getStringCellValue();
-                Modelo modelo = modeloRepository.findByNomeAndMarca(modeloNome, marca).orElseGet(() -> {
-                    Modelo newModelo = new Modelo();
-                    newModelo.setNome(modeloNome);
-                    newModelo.setMarca(marca);
-                    return modeloRepository.save(newModelo);
-                });
-                item.setModelo(modelo);
+                    // Modelo
+                    Cell modeloCell = row.getCell(3);
+                    if (modeloCell != null && modeloCell.getCellType() == CellType.STRING) {
+                        String modeloNome = modeloCell.getStringCellValue();
+                        Modelo modelo = modeloRepository.findByNomeAndMarca(modeloNome, marca).orElseGet(() -> {
+                            Modelo newModelo = new Modelo();
+                            newModelo.setNome(modeloNome);
+                            newModelo.setMarca(marca);
+                            return modeloRepository.save(newModelo);
+                        });
+                        item.setModelo(modelo);
+                    }
+                }
 
-                item.setNumeroSerie(row.getCell(4).getStringCellValue());
-                item.setPotencia((int) row.getCell(5).getNumericCellValue());
+                // Numero Serie
+                Cell numeroSerieCell = row.getCell(4);
+                if (numeroSerieCell != null && numeroSerieCell.getCellType() == CellType.STRING) {
+                    item.setNumeroSerie(numeroSerieCell.getStringCellValue());
+                }
 
-                LocalDateTime dataEntrada = LocalDateTime.parse(row.getCell(6).getStringCellValue(), formatter);
-                item.setDataEntrada(dataEntrada);
+                // Potencia
+                Cell potenciaCell = row.getCell(5);
+                if (potenciaCell != null && potenciaCell.getCellType() == CellType.NUMERIC) {
+                    item.setPotencia((int) potenciaCell.getNumericCellValue());
+                }
 
-                LocalDateTime dataNotaFiscal = LocalDateTime.parse(row.getCell(7).getStringCellValue(), formatter);
-                item.setDataNotaFiscal(dataNotaFiscal);
+                // Data Entrada
+                Cell dataEntradaCell = row.getCell(6);
+                if (dataEntradaCell != null && dataEntradaCell.getCellType() == CellType.STRING) {
+                    LocalDateTime dataEntrada = LocalDateTime.parse(dataEntradaCell.getStringCellValue(), formatter);
+                    item.setDataEntrada(dataEntrada);
+                }
+
+                // Data Nota Fiscal
+                Cell dataNotaFiscalCell = row.getCell(7);
+                if (dataNotaFiscalCell != null && dataNotaFiscalCell.getCellType() == CellType.STRING) {
+                    LocalDateTime dataNotaFiscal = LocalDateTime.parse(dataNotaFiscalCell.getStringCellValue(), formatter);
+                    item.setDataNotaFiscal(dataNotaFiscal);
+                }
 
                 // Categoria
-                String categoriaNome = row.getCell(8) != null ? row.getCell(8).getStringCellValue() : null;
-                Categoria categoria = categoriaNome != null ? categoriaRepository.findByNome(categoriaNome).orElseGet(() -> {
-                    Categoria newCategoria = new Categoria();
-                    newCategoria.setNome(categoriaNome);
-                    return categoriaRepository.save(newCategoria);
-                }) : null;
-                item.setCategoria(categoria);
+                Cell categoriaCell = row.getCell(8);
+                if (categoriaCell != null && categoriaCell.getCellType() == CellType.STRING) {
+                    String categoriaNome = categoriaCell.getStringCellValue();
+                    Categoria categoria = categoriaRepository.findByNome(categoriaNome).orElseGet(() -> {
+                        Categoria newCategoria = new Categoria();
+                        newCategoria.setNome(categoriaNome);
+                        return categoriaRepository.save(newCategoria);
+                    });
+                    item.setCategoria(categoria);
+                }
 
                 // Estado
-                String estadoNome = row.getCell(9) != null ? row.getCell(9).getStringCellValue() : null;
-                Estado estado = estadoNome != null ? estadoRepository.findByNome(estadoNome).orElseGet(() -> {
-                    Estado newEstado = new Estado();
-                    newEstado.setNome(estadoNome);
-                    return estadoRepository.save(newEstado);
-                }) : null;
-                item.setEstado(estado);
+                Cell estadoCell = row.getCell(9);
+                if (estadoCell != null && estadoCell.getCellType() == CellType.STRING) {
+                    String estadoNome = estadoCell.getStringCellValue();
+                    Estado estado = estadoRepository.findByNome(estadoNome).orElseGet(() -> {
+                        Estado newEstado = new Estado();
+                        newEstado.setNome(estadoNome);
+                        return estadoRepository.save(newEstado);
+                    });
+                    item.setEstado(estado);
+                }
 
                 // Disponibilidade
-                String disponibilidadeNome = row.getCell(10) != null ? row.getCell(10).getStringCellValue() : null;
-                Disponibilidade disponibilidade = disponibilidadeNome != null ? disponibilidadeRepository.findByNome(disponibilidadeNome).orElseGet(() -> {
-                    Disponibilidade newDisponibilidade = new Disponibilidade();
-                    newDisponibilidade.setNome(disponibilidadeNome);
-                    return disponibilidadeRepository.save(newDisponibilidade);
-                }) : null;
-                item.setDisponibilidade(disponibilidade);
+                Cell disponibilidadeCell = row.getCell(10);
+                if (disponibilidadeCell != null && disponibilidadeCell.getCellType() == CellType.STRING) {
+                    String disponibilidadeNome = disponibilidadeCell.getStringCellValue();
+                    Disponibilidade disponibilidade = disponibilidadeRepository.findByNome(disponibilidadeNome).orElseGet(() -> {
+                        Disponibilidade newDisponibilidade = new Disponibilidade();
+                        newDisponibilidade.setNome(disponibilidadeNome);
+                        return disponibilidadeRepository.save(newDisponibilidade);
+                    });
+                    item.setDisponibilidade(disponibilidade);
+                }
 
                 // Localizacao
-                String localizacaoNome = row.getCell(11) != null ? row.getCell(11).getStringCellValue() : null;
-                Localizacao localizacao = localizacaoNome != null ? localizacaoRepository.findByNome(localizacaoNome).orElseGet(() -> {
-                    Localizacao newLocalizacao = new Localizacao();
-                    newLocalizacao.setNome(localizacaoNome);
-                    return localizacaoRepository.save(newLocalizacao);
-                }) : null;
-                item.setLocalizacao(localizacao);
+                Cell localizacaoCell = row.getCell(11);
+                if (localizacaoCell != null && localizacaoCell.getCellType() == CellType.STRING) {
+                    String localizacaoNome = localizacaoCell.getStringCellValue();
+                    Localizacao localizacao = localizacaoRepository.findByNome(localizacaoNome).orElseGet(() -> {
+                        Localizacao newLocalizacao = new Localizacao();
+                        newLocalizacao.setNome(localizacaoNome);
+                        return localizacaoRepository.save(newLocalizacao);
+                    });
+                    item.setLocalizacao(localizacao);
+                }
 
                 items.add(item);
             }
 
             workbook.close();
         }
-
-        // Save all items
-        itemRepository.saveAll(items);
 
         return items;
     }
