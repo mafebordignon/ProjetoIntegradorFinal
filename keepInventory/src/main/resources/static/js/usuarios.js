@@ -99,7 +99,7 @@ function validateForm(event) {
     event.preventDefault();
     var nome =  document.getElementById("nome-input").value;
     var sobrenome =  document.getElementById("sobrenome-input").value;
-    var email = document.getElementById("email-input").value;
+    var email = document.getElementById("email-input").value.toLowerCase();
     var role = document.getElementById("cargo-input").value;
     fetch('/admin/api/usuarios', {
             method: 'POST',

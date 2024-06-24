@@ -30,6 +30,10 @@
     </div>
 </div>
 <script src="/js/login.js"></script>
-
+<script>
+document.getElementById('username').addEventListener('input', function() {
+this.value = this.value.toLowerCase();
+});
+</script>
 </body>
 </html>
