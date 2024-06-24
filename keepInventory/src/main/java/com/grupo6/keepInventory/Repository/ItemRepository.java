@@ -11,19 +11,19 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, PagingAndSortingRepository<Item,Long> {
-    @Query("SELECT * FROM Item WHERE estado = :idEstado")
+    @Query("SELECT i FROM Item i WHERE i.estado = :idEstado")
     Page<Item> findByEstado( Long idEstado, Pageable pageable);
-    @Query("SELECT * FROM Item WHERE categoria = :idCategoria")
+    @Query("SELECT i FROM Item i WHERE i.categoria = :idCategoria")
     Page<Item> findByCategoria(Long idCategoria, Pageable pageable);
-    @Query("SELECT * FROM Item WHERE disponibilidade = :idDisponibilidade")
+    @Query("SELECT i FROM Item i WHERE i.disponibilidade = :idDisponibilidade")
     Page<Item> findByDisponibilidade(Long idDisponibilidade, Pageable pageable);
-    @Query("SELECT * FROM Item WHERE localizacao = :idLocalizacao")
+    @Query("SELECT i FROM Item i WHERE i.localizacao = :idLocalizacao")
     Page<Item> findByLocalizacao(Long idLocalizacao, Pageable pageable);
-    @Query("SELECT * FROM Item WHERE descricao like :descricao")
+    @Query("SELECT i FROM Item i WHERE i.descricao like :descricao")
     Page<Item> findByDescricao(String descricao, Pageable pageable);
-    @Query("SELECT * FROM Item WHERE descricao like :descricao")
+    @Query("SELECT i FROM Item i WHERE i.descricao like :nome")
     Page<Item> findByNome(String nome, Pageable pageable);
 
-    @Query("SELECT i.* FROM Item i JOIN Modelo mo ON mo.id = i.modelo JOIN Marca ma ON ma.id = mo.marca WHERE ma.nome = :marcanome")
+    @Query("SELECT i FROM Item i WHERE i.modelo.marca.nome = :marcanome")
     Page<Item> findByMarca(String marcanome, Pageable pageable);
 }

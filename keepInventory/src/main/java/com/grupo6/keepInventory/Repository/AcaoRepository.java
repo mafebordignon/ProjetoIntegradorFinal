@@ -11,7 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface AcaoRepository extends JpaRepository<Acao, Long>, PagingAndSortingRepository<Acao,Long> {
-    @Query(value = "SELECT * FROM Acao where item = :idItem", nativeQuery = true)
+    @Query(value = "SELECT a FROM Acao a where a.item = :idItem", nativeQuery = true)
     Page<Acao> findByItem(Long idItem, Pageable pageable);
 
     List<Acao> findByItemId(Long id);

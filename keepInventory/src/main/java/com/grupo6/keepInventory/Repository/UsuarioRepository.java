@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>, PagingAndSortingRepository<Usuario,Long> {
-    @Query("SELECT * FROM Usuario WHERE email = :Email")
+    @Query("SELECT u FROM Usuario u WHERE u.email = :Email")
     Optional<Usuario> findByEmail(String Email);
 //    @Modifying
 //    @Query("UPDATE Usuario u SET u.nome = :newNome, u.sobrenome = :newSobrenome, u.numeroDeCadastro = :newNumeroDeCadastro WHERE u.id = :clientId")
