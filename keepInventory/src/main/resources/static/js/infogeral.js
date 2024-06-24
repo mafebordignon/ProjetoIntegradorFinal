@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let statusFilter = 'none';
     let url = '';
     let selectedCategory = '';
-    let query = "";
+    let query = '';
     const searchButton = document.getElementById('button-pesquisar');
     const search = document.querySelector('.pesquisar');
 
