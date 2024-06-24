@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"  rel="stylesheet">
+    <link rel="stylesheet" href="css/InfoGeral.css">
+</head>
+
+<body>
+
+    <header class="flex-container">
+        <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+        </div>
+        <p id="nomeUsuario"></p>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <nav id="side-nav" class="flex-container">
+        <div class="nav-marker flex-container">
+
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        </div>
+
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <a href="/campos-ativos" class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </a>
+        <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+            <img src="/images/usuarios-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Usuários</p>
+        </a>
+
+    </nav>
+    <main>
+    <div class="main-content">
+        <div class="container-cat" id="select">
+            <div class="box-cat">
+                <!--                        <div class='category-header1'>-->
+                <!--                            <button class='category-title1' data-category="1">Categoria 1</button>-->
+                <!--                        </div>-->
+                <!--                        <div class='category-header2'>-->
+                <!--                            <button class='category-title2' data-category="2">Categoria 2</button>-->
+                <!--                        </div>-->
+                <!--                        <div class='category-header3'>-->
+                <!--                            <button class='category-title3'>Categoria +</button>-->
+                <!--                        </div>-->
+            </div>
+            <div id="ajustar-botao-categoria">
+
+                <button id="botao-anterior-categoria" class="pagination-button-categoria"> < </button>
+                <button id="botao-proximo-categoria" class="pagination-button-categoria"> > </button>
+            </div>
+        </div>
+
+
+
+        <div class="container-card-title">
+            <div id='inventory' class='inventory'>Inventário</div>
+
+            <button onclick="redirecionar()" class='card1'>
+                <div id='card-text' class='card-text'>+ Novo Item</div>
+            </button>
+
+            <button id='card2' class='card2'  onclick="baixarArquivo()">
+                <div id='card-text' class='card-text' >+ Gerar XLSX</div>
+            </button>
+
+
+           <button onclick="abrirModal()" class="card3">
+              + Importar
+             </button>
+
+        </div>
+
+
+        <div class="grid-container-filters">
+         <div class="pesquisa">
+            <input type="text" class="pesquisar" placeholder="Pesquisar">
+            <button id="button-pesquisar" class="pesquisar-button">Pesquisar</button>
+        </div>
+
+            <!--
+            <div class="grid-button">
+                <select class="filter">
+                    <option value="" disabled selected hidden>Filtro</option>
+                    <option value="option0">Filtro</option>
+                    <option value="option1">Mais Recentes</option>
+                    <option value="option2">Ultima Edição</option>
+                    <option value="option3"></option>
+                </select>
+
+                <select class="filterby" id="status-filter">
+                    <option value="none">Filtro</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+            </div>
+            -->
+
+
+        </div>
+
+            <div class="tabela">
+                 <p>Item</p>
+                <p>Origem</p>
+                <p>Local Atual</p>
+                 <p>Marca</p>
+                <p>Status</p>
+                <p>Disponibilidade</p>
+        </div>
+
+        <hr>
+        <div id="container" class="grid-container-item"></div>
+
+        <div id="results"></div>
+
+        <div class="pagination">
+            <button id="prev" class="back"> < </button>
+            <input id="page" class="pagination-input" disabled>
+            <button id="next" class="prox"> >  </button>
+            <ul id="list"></ul>
+        </div>
+
+        <div id="modal-importar" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal()">&times;</span>
+                <h2>Importar Arquivo</h2>
+                <input type="file" id="fileInput">
+                <button onclick="salvarArquivo()">Salvar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</main>
+
+
+
+
+
+<script src="js/infogeral.js"></script>
+
+<script src="js/layout.js"></script>
+</body>
+</html>
+
+<!-- <a target="_blank" href="https://icons8.com/icon/392/box">Box</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->

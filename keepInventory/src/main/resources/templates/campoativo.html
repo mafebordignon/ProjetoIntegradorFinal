@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Ativo</title>
+
+    <link rel="stylesheet" href="css/layout2.css">
+    <link rel="stylesheet" href="css/campoativo.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="flex-container">
+        <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+        </div>
+        <p id="nomeUsuario"></p>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <nav id="side-nav" class="flex-container">
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <div class="nav-marker flex-container">
+
+        <div class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </div>
+        </div>
+
+        <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+            <img src="/images/usuarios-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Usuários</p>
+        </a>
+    </nav>
+
+    <main>
+        <div class="content">
+            <div>
+                <button id="categoriaButton" class="button">Categoria</button>
+                <button id="localizacaoButton" class="button">Localização</button>
+                <button id="marcaButton" class="button">Marca</button>
+                <button id="modeloButton" class="button">Modelo</button>
+            </div>
+            <section>
+                <h1></h1>
+                <form id="form" class="tamanho">
+                    <label for="nome-campo">Nome</label>
+                    <input id="nome-campo" required  maxlength="100">
+                    <label for="marca-campo" id="l-marca-campo" style="display: none;">Marca</label>
+                    <select id="marca-campo" style="display: none;">
+                    </select>
+                    <input type="submit" value="cadastrar">
+                </form>
+                <div>
+                    <div id="listaItens" class="tamanho">
+
+                    </div>
+                    <div class="paginacao tamanho">
+                        <button id="anteriorButton" class="button">Anterior</button>
+                        <input id="pageNumberInput" type="number" readonly>
+                        <button id="proximoButton" class="button">Proximo</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <div id="alterarModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Alterar Item</h2>
+                    <div>
+                        <label for="novoNome">Novo Nome:</label>
+                        <input type="text" id="novoNome" required maxlength="100">
+                    </div>
+                    <div id="marcaCampoModal" style="display: none;">
+                        <label for="novaMarca">Nova Marca:</label>
+                        <select id="novaMarca">
+                            <!-- Opções de marca serão populadas dinamicamente -->
+                        </select>
+                    </div>
+                    <button id="confirmarAlteracao" class="button">Confirmar Alteração</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="js/campoativo.js"></script>
+    <script src="js/layout.js"></script>
+</body>
+
+</html>
+
+<!-- <a target="_blank" href="https://icons8.com/icon/392/box">Box</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> -->

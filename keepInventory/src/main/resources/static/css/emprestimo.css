@@ -1,0 +1,116 @@
+.body {
+  background-color: #EDF0F2;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0;
+}
+
+hr {
+  box-shadow: none;
+  border: none;
+  height: 2px;
+  background-color: #DEE1FF;
+}
+
+a {
+  text-decoration: none;
+}
+
+#erro-responsavel {
+    display: none;
+    color: red;
+    position: absolute;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+button {
+  width: 100px;
+  padding: 14px 20px;
+  border-radius: 4px;
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  box-shadow: none;
+  border: none;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+}
+button:hover{
+  background-color: #408f44;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  margin-left: auto;
+  margin-top: 10px;
+  transform: translateY(-25%);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+fieldset {
+  margin: 1%;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flexbox;
+  justify-content: center;
+  border: none;
+  position: relative;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+label {
+  /* margin-bottom: 20px; */
+  display: inline-block;
+}
+
+input,select {
+  width: calc(100% - 10px);
+  background-color: #EDF0F2;
+  color: rgb(0, 0, 0);
+  padding: 14px;
+  margin: 0;
+  border: 1px solid #8F8F8F;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+input:hover {
+  border: 1px solid;
+}
+
+select:hover {
+    border: 1px solid;
+}
+
+section {
+  width: 100%;
+  border-radius: 5px;
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px 0;
+  margin-bottom: 12px;
+}
+
+section > div {
+  margin-right: 10px;
+  flex: 1;
+}
+
+section > div >label {
+  margin-bottom: 10px;
+}

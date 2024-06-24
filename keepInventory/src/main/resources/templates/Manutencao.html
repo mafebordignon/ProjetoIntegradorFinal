@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="/css/layout2.css">
+    <link rel="stylesheet" href="/css/manutencao.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header class="flex-container">
+        <div class="flex-container" id="header-nav-button" onclick="toggleNav()">
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+            <div class="header-nav-button-stripes"></div>
+        </div>
+        <p id="nomeUsuario"></p>
+        <a href="/logout">Sair</a>
+    </header>
+
+    <nav id="side-nav" class="flex-container">
+        <a href="/inventario" class="flex-container main-screen-button">
+            <img src="/images/inventario-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Inventário</p>
+        </a>
+        <a href="/cadastro-item" class="flex-container main-screen-button">
+            <img src="/images/cadastrar-button.svg" alt="" style="margin-left: 35%">
+            <p class="nav-button-text poppins-regular">Cadastrar Item</p>
+        </a>
+        <a href="/campos-ativos" class="flex-container main-screen-button">
+            <img src="/images/campos-ativos-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Campos Ativos</p>
+        </a>
+        <a href="/admin/usuarios" class="flex-container main-screen-button" id="nav-admin">
+            <img src="/images/usuarios-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Usuários</p>
+        </a>
+        <div class="nav-marker flex-container">
+            <div class="flex-container main-screen-button" >
+                <img src="/images/manutencao-button.svg" alt="" >
+                <p class="nav-button-text poppins-regular">Manutenção</p>
+            </div>
+        </div>
+        <a id="link-espec"  class="flex-container main-screen-button" >
+            <img src="/images/especificacao-button.svg" alt="" >
+            <p class="nav-button-text poppins-regular">Especificação</p>
+        </a>
+    </nav>
+
+    <main>
+        <div class="content">
+            <div id="item">
+                <h1>Registro de Manutenção de Item</h1>
+                <hr>
+                <div class="div-info-item">
+                    <div>
+                        <p class="label">Descrição</p>
+                        <p id="item-descricao" class="info" ></p>
+                    </div>
+                    <div>
+                        <p class="label">NotaFiscal </p>
+                        <p id="item-nf" class="info"></p>
+                    </div>
+                </div>
+            </div>
+
+            <section id="info">
+                <h1 class="title2">Informações da Manutenção</h1>
+                <div>
+                    <p class="label">Descrição do Problema</p>
+                    <p id="infoDescricaoProblema" class="info"></p>
+                    <p class="label">Data de Inicio</p>
+                    <p id="infoDataInicio" class="info"></p>
+                </div>
+                <div id="infoAberto" style="display: none;">
+                    <p class="label">Técnico</p>
+                    <p id="infoTecnico" class="info" ></p>
+                    <p class="label">Data de Envio ao Concerto</p>
+                    <p id="infoDataMandado" class="info" ></p>
+                    <p class="label">Data Esperada do Concerto</p>
+                    <p id="infoDataEsperada" class="info" ></p>
+                </div>
+                <div id="infoFechado" style="display: none;">
+                    <p class="label">Descrição de como ocorreu</p>
+                    <p id="infoDescricaoSolucao" class="info" ></p>
+                    <p class="label">Data de Término</p>
+                    <p id="infoDataFim" class="info" ></p>
+                </div>
+
+            </section>
+
+            <section id="aberto-naoEmAcao" style="display: none;">
+                <hr>
+
+                <form>
+                    <label for="tecnico" class="label">Técnico</label>
+                    <input id="tecnico" required  class="info" >
+                    <label for="dataMandado" class="label">Quando foi mandado?</label>
+                    <input type="datetime-local" id="dataMandado" required  class="info" >
+                    <label for="dataEsperada" class="label">Data esperada para estar pronto?</label>
+                    <input type="datetime-local" id="dataEsperada" required  class="info" >
+                    <input type="submit" id="button-aberto-naoEmAcao" value="Salvar" class="button">
+                </form>
+            </section>
+
+            <section id="aberto-EmAcao" style="display: none;">
+                <hr>
+
+                <form>
+                    <label for="descricaoSolucao"  class="label">No que deu?</label>
+                    <input id="descricaoSolucao" required  class="info" >
+                    <label for="dataFim" class="label">Data de Fechamento</label>
+                    <input type="datetime-local" id="dataFim" required  class="info" >
+                    <label for="dataProximaManutencao" class="label">Data da Próxima Manutenção</label>
+                    <input type="datetime-local" id="dataProximaManutencao" required  class="info" >
+                    <input type="submit" id="button-aberto-EmAcao" value="Salvar" class="button">
+                </form>
+            </section>
+
+            <section id="editar-fechado" style="display: none;">
+                <hr>
+                <button id="editar-editar-button" class="button">Editar</button>
+                <form id="editar-form-edicao" style="display: none;">
+                    <label for="editar-descricaoProblema" class="label">Descrição do Problema</label>
+                    <textarea id="editar-descricaoProblema" required  class="info" ></textarea>
+
+                    <label for="editar-descricaoSolucao" class="label">Descrição da Solução</label>
+                    <textarea id="editar-descricaoSolucao" required  class="info" ></textarea>
+
+                    <label for="editar-dataInicio" class="label">Data de Início</label>
+                    <input type="datetime-local" id="editar-dataInicio" required  class="info" >
+
+                    <label for="editar-dataMandado" class="label">Data de Mandado</label>
+                    <input type="datetime-local" id="editar-dataMandado" required  class="info" >
+
+                    <label for="editar-dataEsperada" class="label">Data Esperada</label>
+                    <input type="datetime-local" id="editar-dataEsperada" required  class="info" >
+
+                    <label for="editar-dataFim" class="label">Data de Término</label>
+                    <input type="datetime-local" id="editar-dataFim" required class="info" >
+
+                    <label for="editar-tecnico" class="label">Nome do Técnico</label>
+                    <input type="text" id="editar-tecnico" required  class="info" >
+
+                    <div>
+                        <button type="button" id="editar-salvar-edicao" class="button">Salvar</button>
+                        <button type="button" id="editar-cancelar-edicao" class="button">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+<!--            <hr>-->
+<!--            <section id="anexos">-->
+<!--                <h1>Anexos</h1>-->
+<!--                <div id="files"></div>-->
+<!--                <button class="button">anexar</button>-->
+<!--            </section>-->
+        </div>
+
+    </main>
+
+
+    <script src="/js/layout.js"></script>
+    <script src="/js/manutencao.js"></script>
+</body>
+
+</html>
